@@ -1,7 +1,7 @@
 pipeline {
 agent any
 
-
+```
 environment {
     IMAGE_NAME = "zubairzone/calculator-app"
     IMAGE_TAG  = "v.02"
@@ -17,23 +17,22 @@ stages {
 
     stage('Build Maven') {
         steps {
-            sh 'mvn clean package'
+            bat 'mvn clean package'
         }
     }
 
     stage('Build Docker Image') {
         steps {
-            sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+            bat 'docker build -t %IMAGE_NAME%:%IMAGE_TAG% .'
         }
     }
-
-   
 
     stage('Push Docker Image') {
         steps {
-            sh 'docker push $IMAGE_NAME:$IMAGE_TAG'
+            bat 'docker push %IMAGE_NAME%:%IMAGE_TAG%'
         }
     }
 }
+```
 
 }
