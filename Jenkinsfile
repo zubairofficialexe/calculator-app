@@ -1,7 +1,6 @@
 pipeline {
 agent any
 
-```
 environment {
     IMAGE_NAME = "zubairzone/calculator-app"
     IMAGE_TAG = "v.01"
@@ -49,6 +48,6 @@ stages {
         }
     }
 }
-```
+
 
 }
