@@ -1,0 +1,6 @@
+once installed 
+run aws --version on cli
+once done 
+aws configure
+goto aws iam create secret access key 
+and use it 
