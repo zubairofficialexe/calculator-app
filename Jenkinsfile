@@ -27,18 +27,7 @@ stages {
         }
     }
 
-    stage('Docker Login') {
-        steps {
-            withCredentials([usernamePassword(
-                credentialsId: 'Dockerhub',
-                usernameVariable: 'DOCKER_USER',
-                passwordVariable: 'DOCKER_PASS'
-            )]) {
-
-                sh 'echo "$DOCKER_PASS" | docker login --username "$DOCKER_USER" --password-stdin'
-            }
-        }
-    }
+   
 
     stage('Push Docker Image') {
         steps {
