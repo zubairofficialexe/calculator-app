@@ -1,0 +1,33 @@
+# Maven
+target/
+.mvn/
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Project Docs
+project screenshots/
+project steps.txt
+HELP.md
+
+# Temporary Files
+*.tmp
+*.swp
+
+# Node Modules (if future frontend added)
+node_modules/
+
+# Environment Files
+.env
