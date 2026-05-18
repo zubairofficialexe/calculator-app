@@ -49,7 +49,7 @@ pipeline {
 
                 )]) {
 
-                    bat 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                    bat 'echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin'
                 }
             }
         }
@@ -59,7 +59,7 @@ pipeline {
             steps {
 
                 bat 'docker push %IMAGE_NAME%:%Image_TAG%'
-                
+
             }
         }
 
