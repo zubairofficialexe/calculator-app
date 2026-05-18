@@ -33,10 +33,7 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    powershell '''
-                        $ErrorActionPreference = "Stop"
-                        Write-Output $env:DOCKER_PASS | docker login --username $env:DOCKER_USER --password-stdin
-                    '''
+                    bat 'echo %DOCKER_PASS% | docker login --username %DOCKER_USER% --password-stdin'
                 }
             }
         }
