@@ -4,7 +4,8 @@ pipeline {
 
     environment {
 
-        IMAGE_NAME = "zubairzone/calculator-app:v1.0"
+        IMAGE_NAME = "zubairzone/calculator-app"
+        Image_TAG = "v.01"
     }
 
     stages {
@@ -30,7 +31,7 @@ pipeline {
 
             steps {
 
-                bat 'docker build -t $IMAGE_NAME .'
+                bat 'docker build -t %IMAGE_NAME%:%Image_TAG% .'
             }
         }
 
@@ -57,7 +58,8 @@ pipeline {
 
             steps {
 
-                bat 'docker push $IMAGE_NAME'
+                bat 'docker push %IMAGE_NAME%:%Image_TAG%'
+                
             }
         }
 
