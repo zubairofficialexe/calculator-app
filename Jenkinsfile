@@ -26,21 +26,21 @@ stages {
         }
     }
 
-    stage('Docker Login') {
-        steps {
-            withCredentials([usernamePassword(
-                credentialsId: 'dockerhub',
-                usernameVariable: 'DOCKER_USER',
-                passwordVariable: 'DOCKER_PASS'
-            )]) {
-
-                powershell '''
-                    $ErrorActionPreference = "Stop"
-                    $env:DOCKER_PASS | docker login --username $env:DOCKER_USER --password-stdin
-                '''
-            }
+   stage('Docker Login') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub',
+            usernameVariable: 'DOCKER_USER',
+            passwordVariable: 'DOCKER_PASS'
+        )]) {
+            powershell '''
+                $ErrorActionPreference = "Stop"
+                $pass = $env:DOCKER_PASS.Trim()
+                $pass | docker login --username $env:DOCKER_USER --password-stdin
+            '''
         }
     }
+}
 
     stage('Push Docker Image') {
         steps {
