@@ -22,7 +22,7 @@ pipeline {
 
             steps {
 
-                sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
 
             steps {
 
-                sh 'docker build -t $IMAGE_NAME .'
+                bat 'docker build -t $IMAGE_NAME .'
             }
         }
 
@@ -48,7 +48,7 @@ pipeline {
 
                 )]) {
 
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                    bat 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                 }
             }
         }
@@ -57,7 +57,7 @@ pipeline {
 
             steps {
 
-                sh 'docker push $IMAGE_NAME'
+                bat 'docker push $IMAGE_NAME'
             }
         }
 
