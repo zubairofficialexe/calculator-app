@@ -12,6 +12,7 @@ pipeline {
         stage('Clone Repository') {
 
             steps {
+                git branch: 'main',
 
                 git 'https://github.com/zubairofficialexe/calculator-app.git'
             }
