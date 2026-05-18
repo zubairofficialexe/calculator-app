@@ -4,7 +4,7 @@ pipeline {
 
     environment {
 
-        IMAGE_NAME = "zubairzone/calculator-app"
+        IMAGE_NAME = "zubairzone/calculator-app:v1.0"
     }
 
     stages {
@@ -13,7 +13,7 @@ pipeline {
 
             steps {
 
-                git 'YOUR_GITHUB_REPO_URL'
+                git 'https://github.com/zubairofficialexe/calculator-app.git'
             }
         }
 
@@ -33,6 +33,25 @@ pipeline {
             }
         }
 
+        stage('Docker Login') {
+
+            steps {
+
+                withCredentials([usernamePassword(
+
+                    credentialsId: 'dockerhub',
+
+                    usernameVariable: 'DOCKER_USER',
+
+                    passwordVariable: 'DOCKER_PASS'
+
+                )]) {
+
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                }
+            }
+        }
+
         stage('Push Docker Image') {
 
             steps {
@@ -41,6 +60,5 @@ pipeline {
             }
         }
 
-        
     }
-}git
+}
