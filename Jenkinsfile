@@ -16,22 +16,23 @@ stages {
 
     stage('Build Maven') {
         steps {
-            bat 'mvn clean package'
+            sh 'mvn clean package'
         }
     }
 
     stage('Build Docker Image') {
         steps {
-            bat 'docker build -t %IMAGE_NAME%:%IMAGE_TAG% .'
+            sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
         }
     }
+
+   
 
     stage('Push Docker Image') {
         steps {
-            bat 'docker push %IMAGE_NAME%:%IMAGE_TAG%'
+            sh 'docker push $IMAGE_NAME:$IMAGE_TAG'
         }
     }
 }
-
 
 }
