@@ -58,6 +58,7 @@ pipeline {
                 sh 'kubectl get pods'
                 sh 'kubectl get svc'
                 sh 'kubectl get ingress -A'
+                
             }
         }
     }

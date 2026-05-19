@@ -186,5 +186,99 @@ Important Learnings
 •	Declarative Pipeline already handles SCM checkout.
 •	Branch mismatch is one of the most common Jenkins Git failures.
 
+day 02:-1
+We create  deployment pipeline today.
+First we create a cluster having fargate 
 
+we installed aws cli kubectl eksctl on jenkisn server 
+ 
+aws cli 
+kubectl
+eks
+configure aws cli
+Create EKS Cluster with Fargate 
+Connect Local Machine to EKS Cluster
+Create Fargate Profile  so that we can deploy our app in our namespace instead of default
+Associate IAM OIDC Provider 
+Download IAM Policy 
+Create IAM Policy 
+Create IAM Role and Service Account 
+install helm
+.Install AWS Load Balancer Controller Using Helm
+Add Helm Repository
+Update Helm Repository
+Install AWS Load Balancer Controller 
+Now run our pipeline 
+ solve this problem
+Error 1:
 
+```text id="n1"
+kubectl apply failed inside Jenkins pipeline
+```
+
+Cause:
+
+```text id="n2"
+Jenkins user had no kubeconfig / cluster access
+```
+
+Fix:
+
+```bash id="n3"
+cp ~/.kube/config /var/lib/jenkins/.kube/config
+chown -R jenkins:jenkins /var/lib/jenkins/.kube
+```
+
+---
+
+* Error 2:
+
+```text id="n4"
+Unable to locate AWS credentials
+```
+
+Cause:
+
+```text id="n5"
+jenkins user had no AWS CLI credentials
+```
+
+Fix:
+
+```bash id="n6"
+sudo su - jenkins
+aws configure
+```
+
+Then verify:
+
+```bash id="n7"
+kubectl get nodes
+```
+
+---
+
+Final understanding:
+
+```text id="n8"
+root user config != jenkins user config
+```
+
+Jenkins needs separately:
+
+* kubeconfig
+* aws credentials
+* kubectl access
+* aws cli access
+
+for EKS deployment pipeline to work.
+
+run pipe line 
+success 
+wait 
+verify 
+check ec2 load balacer is created in console
+paste its link project will run 
+Verify Controller Deployment 
+
+* 
