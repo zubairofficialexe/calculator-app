@@ -2,5 +2,48 @@ once installed
 run aws --version on cli
 once done 
 aws configure
-goto aws iam create secret access key 
+goto aws profile-security credential- create access key and download csv for future use .
+ 
+
+access key: AKIAV3RZH6KGGIC5AQQD
+secret key : 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
 and use it 
+keep enter and its woeking
+
+now initialize git in calculator-app
+and git add statsu and commit 
+
+
+now  create a folder as per our project 
+src/main/java/com/zubair/calculator/controller/CalculatorController.java
+src/main/java/com/zubair/calculator/serbvice/CalculatorService.java
+
+src/main/resources/static/style.css
+src/main/resources/static/script.js
+src/main/resources/templates/index.html
+
+
+note we have to change exmaple=zubair
+now paste code 
+commit all changes 
+run mvn clean install
+run mvn spring-boot:run
+check project locally first .
+now create a Dockerfile 
+.dockerignore file
+.gitignore file
+Jenkinsfile
+push necessary code to GitHub (if not linked fromterminal first create a connection)
+once code pused in GitHub
+create a Jenkins server on Linux 
+install all necessary tools like maven git docker aws cli etc 
+set java home 
+set Jenkins  user in docker group 
+and su to verify that Jenkins is accessible to use docker or not like by running docker ps
+when everything is ok 
+login to docker hub
+using pat 
+onve login 
+goto Jenkins and run pipeline 
+debug  if any problem occurs 
+ and pipeline will buil test and push image to GitHub repo.
