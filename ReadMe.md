@@ -154,6 +154,8 @@ docker tag calculator-app zubairzone/calculator-app:v1
 ```bash
 docker push zubairzone/calculator-app:v1
 ```
+## Screenshots
+### 4. Docker Hub Repository
 ![Docker Hub](screenshots/dockerhub-repo.png)
 ---
 
