@@ -20,7 +20,7 @@ spec:
       containers:
       - name: calculator-container
 
-        image: zubairzone/calculator-app:v.01
+        image: zubairzone/calculator-app:v.03
 
         ports:
         - containerPort: 8081
@@ -34,7 +34,7 @@ metadata:
   name: calculator-service
 
 spec:
-  type: LoadBalancer
+  type: ClusterIP
 
   selector:
     app: calculator
@@ -52,16 +52,17 @@ metadata:
   name: calculator-ingress
 
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+
+    alb.ingress.kubernetes.io/scheme: internet-facing
+
+    alb.ingress.kubernetes.io/target-type: ip
 
 spec:
 
-  ingressClassName: nginx
+  ingressClassName: alb
 
   rules:
-  - host: calculator.local
-
-    http:
+  - http:
 
       paths:
       - path: /
