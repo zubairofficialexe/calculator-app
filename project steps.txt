@@ -47,3 +47,144 @@ onve login
 goto Jenkins and run pipeline 
 debug  if any problem occurs 
  and pipeline will buil test and push image to GitHub repo.
+
+
+
+
+
+
+------------------------------
+Truble shooting debugging during project
+Project
+•	Built Spring Boot Calculator App using Maven, Java 17, Thymeleaf UI, REST API.
+Maven Issues
+•	Fixed dependency download/repository connection reset issues.
+•	Fixed missing test dependencies.
+API Issue
+•	+ symbol converted into space in URL.
+•	Fixed using:
+encodeURIComponent(operation)
+Port Conflict
+•	Port 8080 occupied by Jenkins.
+•	Spring Boot moved to 8081.
+Spring Boot Learning
+•	Embedded Tomcat already included in Spring Boot.
+•	No external Tomcat/Nginx needed inside Docker container.
+Docker Concepts
+•	Learned:
+o	FROM
+o	WORKDIR
+o	COPY
+o	EXPOSE
+o	ENTRYPOINT
+o	RUN vs CMD vs ENTRYPOINT
+Dockerfile
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY target/calculator-app-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8081
+ENTRYPOINT ["java","-jar","app.jar"]
+Docker
+•	Added .dockerignore.
+•	Docker build initially failed because target JAR ignored in .dockerignore.
+•	Fixed .dockerignore.
+•	Docker image built successfully.
+Docker Desktop
+•	Update/install failed:
+requires elevation
+•	Fixed using:
+Run as Administrator
+Jenkins
+•	Jenkins password recovery/uninstall-reinstall discussed.
+•	Docker-based Jenkins setup discussed.
+•	Learned:
+o	Jenkinsfile = Pipeline as Code
+o	One-time SCM/GitHub config still required.
+CI/CD Architecture
+GitHub
+→ Jenkins
+→ Maven Build
+→ Docker Build
+→ DockerHub Push
+→ EKS Deploy
+Kubernetes
+•	Kubernetes manifests stored in:
+k8s/
+Jenkins + DockerHub
+•	Added Jenkins credentials:
+credentialsId: dockerhub
+•	Jenkinsfile updated for:
+o	Docker build
+o	Docker push
+o	EKS deployment
+Git/Jenkins Branch Issues
+Errors
+Invalid refspec refs/heads/**
+Couldn't find any revision to build
+Root Cause
+•	Jenkins checking origin/master
+•	GitHub default branch was main
+•	Invalid branch specifier configured.
+Fixes
+Jenkins Branch Specifier
+*/main
+Later switched to:
+*/master
+Jenkinsfile
+git branch: 'main'
+Later:
+git branch: 'master'
+Additional Fixes
+•	Disabled lightweight checkout.
+•	Wiped Jenkins workspace.
+•	Removed unnecessary extra clone stage because Declarative Pipeline already performs SCM checkout.
+Git Commands
+Rename Branch
+git branch -M master
+Push Branch
+git push -u origin master
+Delete Old Branch
+git push origin --delete main
+GitHub Restriction
+•	Could not delete current default branch:
+refusing to delete the current branch: refs/heads/main
+Solution
+•	Change GitHub default branch:
+main → master
+•	Then delete main.
+Jenkins Warning
+Selected Git installation does not exist
+•	Non-fatal warning.
+Windows vs Linux Jenkins
+Linux
+sh
+$VAR
+Windows
+bat
+%VAR%
+Windows Pipeline Issues
+•	sh commands failed on Windows Jenkins.
+•	Converted pipeline commands to bat.
+Docker Login Issues
+Causes
+•	%VAR% vs $VAR confusion.
+•	Credential ID case mismatch:
+dockerhub ≠ Dockerhub
+•	PAT handling issues in bat.
+Fixes
+•	PowerShell Docker login tested successfully.
+•	Realized Jenkins machine already logged into Docker Hub.
+•	Removed login stage from pipeline.
+Final Working Pipeline
+Git Clone
+→ Maven Build
+→ Docker Build
+→ Docker Push
+Important Learnings
+•	Jenkins credential IDs are case-sensitive.
+•	Existing Docker login on Jenkins machine can remove need for login stage.
+•	Declarative Pipeline already handles SCM checkout.
+•	Branch mismatch is one of the most common Jenkins Git failures.
+
+
+
