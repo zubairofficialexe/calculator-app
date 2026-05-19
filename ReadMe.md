@@ -154,7 +154,7 @@ docker tag calculator-app zubairzone/calculator-app:v1
 ```bash
 docker push zubairzone/calculator-app:v1
 ```
-![Docker Hub](screenshots/docker-hub.png)
+
 ---
 
 ## 8. Amazon EKS Setup
@@ -387,12 +387,65 @@ eksctl delete cluster \
 
 Add:
 
-1. Local application screenshots
-2. Docker build screenshots
-3. Jenkins pipeline screenshots
-4. Kubernetes deployment screenshots
-5. EKS console screenshots
-6. CI/CD execution videos
+## Screenshots
+
+### 1. Application UI
+
+![Application UI](screenshots/app-ui.png)
+
+---
+
+### 2. Maven Build Success
+
+![Maven Build](screenshots/maven-build.png)
+
+---
+
+### 3. Docker Build
+
+![Docker Build](screenshots/docker-build.png)
+
+---
+
+### 4. Docker Hub Repository
+
+![Docker Hub](screenshots/docker-hub.png)
+
+---
+
+
+### 5. Kubernetes Pods
+
+![Kubernetes Pods](screenshots/console2.png)
+
+---
+
+### 7. Kubernetes Service
+
+![Kubernetes Service](screenshots/console4.png)
+
+---
+
+### 8. Amazon EKS Console
+
+![EKS Console](screenshots/eksconsole.png)
+
+---
+
+### 9. AWS Load Balancer
+
+![Load Balancer](screenshots/alb.png)
+
+---
+
+
+
+## Demo Videos
+
+### 1. CI/CD Pipeline Execution Video
+
+[Watch CI/CD Pipeline Demo](videos/final-cicd.mp4)
+
 
 ---
 
