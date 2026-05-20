@@ -36,6 +36,9 @@ The project includes:
 
 ## 3. CI/CD Architecture
 
+
+![CI/CD](screenshots/Pipeline.svg)
+
 ```text
 GitHub
    ↓
