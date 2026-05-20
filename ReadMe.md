@@ -39,19 +39,6 @@ The project includes:
 
 ![CI/CD](screenshots/Pipeline.svg)
 
-```text
-GitHub
-   ↓
-Jenkins Pipeline
-   ↓
-Maven Build & Test
-   ↓
-Docker Build
-   ↓
-Push Image to Docker Hub
-   ↓
-Deploy to Amazon EKS
-```
 
 ---
 
